@@ -5,10 +5,14 @@
 <script setup>
 import Keyboard from "simple-keyboard"
 import "simple-keyboard/build/css/index.css"
-import { ref, onMounted } from "vue"
+import { ref, onMounted, watch } from "vue"
 
 //array contains all event names that we're going to send out of keyboard
 const emit = defineEmits(["onKeyPress"])
+
+const props = defineProps({
+    guessedLetters: Object,
+})
 
 const keyboard = ref(null)
 
@@ -32,6 +36,35 @@ onMounted(() => {
     })
 })
 
+//watch for certain reactive dependency 
+//first property is the getter we want to track
+//when this changes, it triggers a handler that takes the current value of guest letters & the previous value
+//addButtonTheme adds a class to certain char buttons
+watch(
+    () => props.guessedLetters,
+    (guessedLetters, prevGuessedLetters) => {
+        keyboard.value.addButtonTheme(
+            guessedLetters.miss.join(" "),
+            "miss"
+        );
+        keyboard.value.addButtonTheme(
+            guessedLetters.found.join(" "),
+            "found"
+        );
+        keyboard.value.addButtonTheme(
+            guessedLetters.hint.join(" "),
+            "hint"
+        );
+    },
+    //deep b/c we're checking an obj's properties
+    { deep: true }
+)
+
 </script>   
 
-<style></style>
+<style>
+div.miss {
+    @apply bg-gray-500 !important;
+    @apply text-white;
+}
+</style>

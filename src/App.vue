@@ -6,11 +6,55 @@ import { reactive, onMounted } from "vue";
 const state = reactive({
   solution: "books",
   guesses: ["", "", "", "", "", ""],
-  currentGuessIndex: 0
+  currentGuessIndex: 0,
+  guessedLetters: {
+    //black
+    miss: [],
+    //green
+    found: [],
+    //yellow
+    hint: [],
+  }
 })
 
 const handleInput = (key) => {
   console.log(key)
+  //first check if current guess index is >= 6 -- no typing if out of guesses
+  if (state.currentGuessIndex >= 6) {
+    return
+  }
+  const currentGuess = state.guesses[state.currentGuessIndex]
+
+  if (key == "{enter}") {
+    //send guess, check if 5 letters entered
+    if (currentGuess.length == 5) {
+      state.currentGuessIndex++;
+      //loop over every char in guess
+      for (var i = 0; i < currentGuess.length; i++) {
+        let c = currentGuess.charAt(i)
+        //check if current char matches solution
+        if (c == state.solution.charAt(i)) {
+          state.guessedLetters.found.push(c);
+        //if not negative 1, letter is somewhere in solution
+        } else if (state.solution.indexOf(c) != -1) {
+          state.guessedLetters.hint.push(c);
+        } else {
+          state.guessedLetters.miss.push(c);
+        }
+      }
+    }
+  } else if (key == "{bksp}") {
+    //remove last letter
+    //set state to current index & chop off last char
+    state.guesses[state.currentGuessIndex] =
+      currentGuess.slice(0, -1)
+  } else if (currentGuess.length < 5) {
+    //add latter if alphabetical
+    const alphaRegex = /[a-zA-Z]/;
+    if (alphaRegex.test(key)) {
+      state.guesses[state.currentGuessIndex] += key;
+    }
+  }
 }
 
 onMounted(() => {
@@ -23,6 +67,7 @@ onMounted(() => {
       //& if key code is 8, meaning we want to backspace
       //if neither, just want to get the string from the current char code
       //make lowerspace to match virtual keyboard
+      //NOTE: keyCode deprecated -- switched to key per docs
       e.key == "Enter"
         ? "{enter}"
         : e.key == "Backspace"
@@ -47,7 +92,10 @@ onMounted(() => {
       />
     </div>
     <!-- listen for event -->
-    <simple-keyboard @onKeyPress="handleInput" />
+    <simple-keyboard
+      @onKeyPress="handleInput"
+      :guessedLetters="state.guessedLetters"
+    />
   </div>
 </template>
 
