@@ -62,9 +62,19 @@ watch(
 
 </script>   
 
-<style>
+<style lang="postcss">
 div.miss {
     @apply bg-gray-500 !important;
+    @apply text-white;
+}
+
+div.found {
+    @apply bg-green-600 !important;
+    @apply text-white;
+}
+
+div.hint:not(.found) {
+    @apply bg-yellow-500 !important;
     @apply text-white;
 }
 </style>
