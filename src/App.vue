@@ -1,7 +1,9 @@
 <script setup>
 import SimpleKeyboard from "./components/SimpleKeyboard.vue";
 import WordRow from "./components/WordRow.vue";
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, computed } from "vue";
+import DarkModeToggle from "./components/DarkModeToggle.vue";
+// import Header from "./components/Header.vue";
 
 const state = reactive({
   solution: "books",
@@ -17,10 +19,21 @@ const state = reactive({
   }
 })
 
+const wonGame = computed(
+  () =>
+  //check if last guess is equal to solution
+    state.guesses[state.currentGuessIndex - 1] === state.solution
+)
+
+const lostGame = computed(() => !wonGame.value
+  && state.currentGuessIndex >= 6
+)
+
 const handleInput = (key) => {
   console.log(key)
   //first check if current guess index is >= 6 -- no typing if out of guesses
-  if (state.currentGuessIndex >= 6) {
+  //disable input if we've won
+  if (state.currentGuessIndex >= 6 || wonGame.value) {
     return
   }
   const currentGuess = state.guesses[state.currentGuessIndex]
@@ -82,6 +95,10 @@ onMounted(() => {
 
 <template>
   <div class="flex flex-col h-screen max-w-md mx-auto justify-evenly">
+    <h1 class="text-4xl font-bold tracking-wide text-center text-green-500 hover:animate-spin">Wordingo</h1>
+    <!-- <dark-mode-toggle /> -->
+    <!-- <Header /> -->
+
     <div>
       <word-row
         v-for="(guess, i) in state.guesses"
@@ -91,6 +108,12 @@ onMounted(() => {
         :submitted="i < state.currentGuessIndex"
       />
     </div>
+    <p v-if="wonGame" class="text-center">
+      🏆 Congrats you solved it!
+    </p>
+    <p v-else-if="lostGame" class="text-center">
+      😔 Out of tries.
+    </p>
     <!-- listen for event -->
     <simple-keyboard
       @onKeyPress="handleInput"

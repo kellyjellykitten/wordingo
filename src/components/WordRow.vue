@@ -47,7 +47,7 @@ watch(
                         temp[i] = "yellow";
                     }
                 }
-                colors.value[i] = temp[i]
+                colors.value[i] = temp[i];
                 await new Promise((resolve) => setTimeout(resolve, 500));
             }
         }

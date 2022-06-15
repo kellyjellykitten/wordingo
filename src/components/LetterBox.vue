@@ -1,14 +1,31 @@
 <script setup>
+import { watch, ref } from "vue";
+
 const props = defineProps({
     letter: {
         type: String,
-        default: ""
+        default: "",
     },
     color: {
         type: String,
-        default: ""
+        default: "",
+    },
+});
+
+const pulse = ref(false);
+const selected = ref(props.letter);
+
+watch(
+    () => props.letter,
+    (selected, prevSelected) => {
+        if (selected && selected.length > 0) {
+            pulse.value = true;
+            setTimeout(() => {
+                pulse.value = false;
+            }, 100);
+        }
     }
-})
+);
 </script>
 
 <template>
