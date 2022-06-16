@@ -2,8 +2,7 @@
 import SimpleKeyboard from "./components/SimpleKeyboard.vue";
 import WordRow from "./components/WordRow.vue";
 import { reactive, onMounted, computed } from "vue";
-import DarkModeToggle from "./components/DarkModeToggle.vue";
-// import Header from "./components/Header.vue";
+import Header from "./components/Header.vue";
 
 const state = reactive({
   solution: "books",
@@ -94,11 +93,10 @@ onMounted(() => {
 </script>
 
 <template>
+  <div class="flex flex-row h-50 px-16 pt-12 items-center justify-between">
+    <Header />
+  </div>
   <div class="flex flex-col h-screen max-w-md mx-auto justify-evenly">
-    <h1 class="text-4xl font-bold tracking-wide text-center text-green-500 hover:animate-spin">Wordingo</h1>
-    <!-- <dark-mode-toggle /> -->
-    <!-- <Header /> -->
-
     <div>
       <word-row
         v-for="(guess, i) in state.guesses"
