@@ -13,52 +13,60 @@
         <div
             v-show="isOpen"
             class="
-                
+                overflow-x-hidden
+                overflow-y-auto
                 fixed
                 inset-0
-                flex
-                items-center
-                justify-center
+                z-50
                 bg-gray-700 bg-opacity-50
+                outline-none
+                focus:outline-none
+                justify-center
+                items-center
+                flex
             "
         >
-            <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-xl">
-                <div class="flexitems-center justify-between">
-                    <h3 class="text-2xl">Modal Title</h3>
-                    <svg
-                        @click="isOpen = false"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-8 h-8 text-red-900 cursor-pointer"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                    </svg>
+            <div class="relative w-auto my-6 mx-auto max-w-6xl">
+                <!-- content -->
+                <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                    <!-- header -->
+                    <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                        <h3 class="text-3xl font-semibold">Instructions</h3>
+                        <svg
+                            @click="isOpen = false"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-8 h-8 text-red-900 cursor-pointer"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                        </svg>
+                    </div>
+                    <!-- body -->
+                    <div class="relative p-6 flex-auto">
+                        <p class="my-4 text-slate-500 text-lg leading-relaxed">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Voluptatibus qui nihil laborum quaerat blanditiis nemo explicabo
+                            voluptatum ea architecto corporis quo vitae, velit temporibus
+                            eaque quisquam in quis provident necessitatibus.
+                        </p>
+                    </div>
+                    <!-- footer -->
+                    <div class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                        <button class="text-red-500 bg-transparent border border-solid border-red-500 hover:bg-red-500 hover:text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" @click="isOpen = false">
+                            Close
+                        </button>
+                        <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" @click="isOpen = false">
+                            Save Changes
+                        </button>
+                    </div>
                 </div>
-                <div class="mt-4">
-                    <p class="mb-4 text-sm">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Voluptatibus qui nihil laborum quaerat blanditiis nemo explicabo
-                        voluptatum ea architecto corporis quo vitae, velit temporibus
-                        eaque quisquam in quis provident necessitatibus.
-                    </p>
-                    <button
-                        @click="isOpen = false"
-                        class="px-6 py-2 text-blue-800 border border-blue-600 rounded"
-                    >
-                        Cancel
-                    </button>
-                    <button class="px-6 py-2 ml-2 text-blue-100 bg-blue-600 rounded">
-                        Save
-                    </button>
-                </div>
-
             </div>
         </div>
     </div>
