@@ -93,6 +93,7 @@ onMounted(() => {
 </script>
 
 <template>
+<div class="bg-white dark:bg-black">
   <div class="flex flex-row h-50 px-16 pt-12 items-center justify-between">
     <Header />
   </div>
@@ -118,6 +119,7 @@ onMounted(() => {
       :guessedLetters="state.guessedLetters"
     />
   </div>
+</div>
 </template>
 
 <style></style>

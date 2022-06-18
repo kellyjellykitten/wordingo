@@ -31,11 +31,11 @@
                 <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                     <!-- header -->
                     <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                        <h3 class="text-3xl font-semibold">Instructions</h3>
+                        <h3 class="text-3xl font-semibold">How to Play</h3>
                         <svg
                             @click="isOpen = false"
                             xmlns="http://www.w3.org/2000/svg"
-                            class="w-8 h-8 text-red-900 cursor-pointer"
+                            class="w-8 h-8 text-red-900 cursor-pointer hover:animate-spin"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -62,9 +62,7 @@
                         <button class="text-red-500 bg-transparent border border-solid border-red-500 hover:bg-red-500 hover:text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" @click="isOpen = false">
                             Close
                         </button>
-                        <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" @click="isOpen = false">
-                            Save Changes
-                        </button>
+                        
                     </div>
                 </div>
             </div>
