@@ -50,11 +50,20 @@
                     </div>
                     <!-- body -->
                     <div class="relative p-6 flex-auto">
-                        <p class="my-4 text-slate-500 text-lg leading-relaxed">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                            Voluptatibus qui nihil laborum quaerat blanditiis nemo explicabo
-                            voluptatum ea architecto corporis quo vitae, velit temporibus
-                            eaque quisquam in quis provident necessitatibus.
+                        <p class="my-4 text-lg leading-relaxed">
+                            Guess the Wordingo in six tries! <br>
+                            <br>
+                            Each guess must be a 5-letter word. Hit the enter key to submit your guess.<br>
+                            Watch as the letter tiles change color depending on how close your guess was!<br>
+                            <br>
+                            <span style="color: #16a34a; font-weight:bold">GREEN</span> tiles indicate that the letter is in the word and in the correct spot.<br>
+                            <img src="https://i.imgur.com/ZGyKEke.png" alt="Green tile means letter is in the word and right spot" title="Green letter tile" /><br>
+                            <span style="color: #eab308; font-weight:bold">YELLOW</span> tiles indicate that the letter is in the word but in the incorrect spot.<br>
+                            <img src="https://i.imgur.com/IUIOi5F.png" alt="Yellow tile means letter is in word but wrong spot" title="Yellow letter tile" /><br>
+                            <span style="color: #6b7280; font-weight:bold">GRAY</span> tiles mean that the letter is not in the word in any spot.<br>
+                            <img src="https://i.imgur.com/qoMOkIC.png" alt="Gray tile means letter is not in the word at all" title="Gray letter tile" /><br>
+                            <br>
+                            Hit <b>Play Again</b> to guess a different word!
                         </p>
                     </div>
                     <!-- footer -->
@@ -69,7 +78,7 @@
         </div>
     </div>
 
-    <div class="text-4xl font-bold tracking-wide text-green-500 hover:animate-spin">
+    <div class="text-4xl font-bold tracking-wide text-green-600 hover:animate-spin">
         Wordingo
     </div>
 
@@ -88,12 +97,16 @@
 
 <script setup>
 import { ref, defineProps } from "vue";
+import greenImg from '../assets/green.png'
+// document.getElementById('green-img').src = greenImg
 
 const props = defineProps({
     isOpen: Boolean
 })
 
 const isOpen = ref(false)
+
+// const isDark = ref(false)
 
 function toggleDark() {
     console.log("clicked moon")
