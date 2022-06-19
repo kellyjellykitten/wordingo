@@ -68,7 +68,7 @@
                     </div>
                     <!-- footer -->
                     <div class="flex items-center justify-between p-6 border-t border-solid border-slate-200 rounded-b">
-                        <a href="https://github.com/kellyjellykitten/wordingo" target="_blank"><img alt="Source Code" class="w-12 h-12 object-left hover:animate-spin" title="View Source Code on GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"></a>
+                        <a href="https://github.com/kellyjellykitten/wordingo" target="_blank"><img alt="Source Code" class="w-11 h-11 object-left hover:animate-spin" title="View Source Code on GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"></a>
                         <button class="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" @click="isOpen = false">
                             Ok, let's play!
                         </button>
