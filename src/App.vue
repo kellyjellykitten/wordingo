@@ -108,10 +108,20 @@ onMounted(() => {
       />
     </div>
     <p v-if="wonGame" class="text-center">
-      🏆 Congrats you solved it!
+      😸 WOOOORDIIIIINGO! You solved it! 😸
+      <br>
+      <br>
+      <button class="text-green-500 hover:animate-spin bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+        Play again!
+      </button>
     </p>
     <p v-else-if="lostGame" class="text-center">
-      😔 Out of tries.
+      😿 Out of tries! 😿 <b>Solution:</b>
+      <br>
+      <br>
+      <button class="text-green-500 hover:animate-spin bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+        Play again!
+      </button>
     </p>
     <!-- listen for event -->
     <simple-keyboard

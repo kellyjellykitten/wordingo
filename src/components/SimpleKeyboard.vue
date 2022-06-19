@@ -32,6 +32,10 @@ onMounted(() => {
                 "{enter} z x c v b n m {bksp}", 
             ],
         },
+        display: {
+            '{enter}': 'enter',
+            '{bksp}': 'backspace'
+        },
         onKeyPress: onKeyPress,
     })
 })

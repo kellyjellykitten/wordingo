@@ -54,7 +54,7 @@
                             Guess the Wordingo in six tries! <br>
                             <br>
                             Each guess must be a 5-letter word. Hit the enter key to submit your guess.<br>
-                            Watch as the letter tiles change color depending on how close your guess was!<br>
+                            The letter tiles will change color depending on how close your guess was!<br>
                             <br>
                             <span style="color: #16a34a; font-weight:bold">GREEN</span> tiles indicate that the letter is in the word and in the correct spot.<br>
                             <img src="https://i.imgur.com/ZGyKEke.png" alt="Green tile means letter is in the word and right spot" title="Green letter tile" /><br>
@@ -67,23 +67,23 @@
                         </p>
                     </div>
                     <!-- footer -->
-                    <div class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                        <button class="text-red-500 bg-transparent border border-solid border-red-500 hover:bg-red-500 hover:text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" @click="isOpen = false">
-                            Close
+                    <div class="flex items-center justify-between p-6 border-t border-solid border-slate-200 rounded-b">
+                        <a href="https://github.com/kellyjellykitten/wordingo" target="_blank"><img alt="Source Code" class="w-12 h-12 object-left hover:animate-spin" title="View Source Code on GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"></a>
+                        <button class="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" @click="isOpen = false">
+                            Ok, let's play!
                         </button>
-                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="text-4xl font-bold tracking-wide text-green-600 hover:animate-spin">
+    <div class="text-4xl font-bold tracking-wide text-green-500 hover:animate-spin">
         Wordingo
     </div>
 
     <div class="flex w-20 justify-end">
-        <button class="px-1" @click="toggleDark" title="Toggle Theme">
+        <button class="px-1" @click="toggleDark" title="Toggle Dark Mode">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hover:animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path
                     stroke-linecap="round"
