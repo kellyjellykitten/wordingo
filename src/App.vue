@@ -4,6 +4,20 @@ import WordRow from "./components/WordRow.vue";
 import { reactive, onMounted, computed } from "vue";
 import Header from "./components/Header.vue";
 
+
+
+const getWord = () => {
+  fetch('http://localhost:8000/word')
+    .then(response => response.json())
+    .then(json => {
+      const word = json.toLowerCase()
+      console.log(word)
+    })
+    .catch(err => console.log(err))
+}
+
+console.log(getWord())
+
 const state = reactive({
   solution: "books",
   guesses: ["", "", "", "", "", ""],
@@ -17,6 +31,8 @@ const state = reactive({
     hint: [],
   }
 })
+
+console.log("solution ", state.solution)
 
 const wonGame = computed(
   () =>
