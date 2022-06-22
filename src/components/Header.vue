@@ -100,16 +100,17 @@ import { ref, defineProps } from "vue";
 import greenImg from '../assets/green.png'
 // document.getElementById('green-img').src = greenImg
 
+const emit = defineEmits(["toggleDark"])
+
 const props = defineProps({
     isOpen: Boolean
 })
 
 const isOpen = ref(false)
 
-// const isDark = ref(false)
-
 function toggleDark() {
-    console.log("clicked moon")
+    console.log("clicked moon before emit")
+    emit("toggleDark")
 }
 
 </script>

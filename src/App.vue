@@ -5,7 +5,6 @@ import { reactive, onMounted, computed } from "vue";
 import Header from "./components/Header.vue";
 
 
-
 const getWord = () => {
   fetch('http://localhost:8000/word')
     .then(response => response.json())
@@ -20,6 +19,7 @@ console.log(getWord())
 
 const state = reactive({
   solution: "books",
+  darkmode: false,
   guesses: ["", "", "", "", "", ""],
   currentGuessIndex: 0,
   guessedLetters: {
@@ -34,6 +34,14 @@ const state = reactive({
 
 console.log("solution ", state.solution)
 
+// const darkmode = ref(false)
+function onDarkSwitch() {
+  console.log("clicked dark toggle on parent")
+  state.darkmode = !state.darkmode
+  localStorage.setItem('darkmode', state.darkmode)
+}
+
+  
 const wonGame = computed(
   () =>
   //check if last guess is equal to solution
@@ -115,7 +123,8 @@ onMounted(() => {
 <template>
 <div class="bg-white dark:bg-black">
   <div class="flex flex-row h-50 px-16 pt-12 items-center justify-between">
-    <Header />
+    <p>Darkmode: {{ state.darkmode }}</p>
+    <Header @toggleDark="onDarkSwitch" />
   </div>
   <div class="flex flex-col h-screen max-w-md mx-auto justify-evenly">
     <div>
