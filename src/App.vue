@@ -4,20 +4,8 @@ import WordRow from "./components/WordRow.vue";
 import { reactive, ref, onMounted, computed } from "vue";
 import Header from "./components/Header.vue";
 
-let word
-
-const getWord = () => {
-  fetch('http://localhost:8000/word')
-    .then(response => response.json())
-    .then(json => {
-      word = json.toLowerCase()
-      state.solution = word
-      console.log(word)
-    })
-    .catch(err => console.log(err))
-}
-
-getWord()
+import words from "./assets/data.json"
+const wordArray = words['words']
 
 
 const state = reactive({
@@ -35,6 +23,16 @@ const state = reactive({
   }
 })
 
+const getWord = () => {
+  let randIndex = Math.floor(Math.random() * wordArray.length)
+  console.log("randIndex: ", randIndex)
+  //grab that index from word array
+  let word = wordArray[randIndex]
+  console.log("ranWord: ", word)
+  state.solution = word
+}
+getWord()
+
 // let initialState = ref({
 //   solution: "books",
 //   darkmode: false,
@@ -49,7 +47,6 @@ const state = reactive({
 //     hint: []
 //   }
 // })
-
 
 
 function onDarkSwitch() {
