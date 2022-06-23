@@ -149,7 +149,45 @@ function resetGame() {
 </script>
 
 <template>
-<div class="bg-white dark:bg-black">
+<div v-if="state.darkmode" class="bg-gradient-to-r from-slate-800 via-zinc-700 to-neutral-800">
+  <div class="flex flex-row h-50 px-16 pt-12 items-center justify-between">
+    <Header @toggleDark="onDarkSwitch" :darkmode=state.darkmode />
+  </div>
+  <div class="flex flex-col h-screen max-w-md mx-auto justify-evenly">
+    <div>
+      <word-row
+        v-for="(guess, i) in state.guesses"
+        :key="i"
+        :value="guess"
+        :solution="state.solution"
+        :submitted="i < state.currentGuessIndex"
+        :darkmode=state.darkmode
+      />
+    </div>
+    <p v-if="wonGame" class="text-center">
+      😸 WOOOORDIIIIINGO! You solved it! 😸
+      <br>
+      <br>
+      <button @click="resetGame" class="text-green-500 hover:animate-spin bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+        Play again!
+      </button>
+    </p>
+    <p v-else-if="lostGame" class="text-center">
+      😿 Out of tries! 😿 <b>Solution: {{ state.solution }}</b>
+      <br>
+      <br>
+      <button @click="resetGame" class="text-green-500 hover:animate-spin bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+        Play again!
+      </button>
+    </p>
+    <!-- listen for event -->
+    <simple-keyboard
+      @onKeyPress="handleInput"
+      :guessedLetters="state.guessedLetters"
+    />
+  </div>
+</div>
+<div v-else class="bg-white">
   <div class="flex flex-row h-50 px-16 pt-12 items-center justify-between">
     <Header @toggleDark="onDarkSwitch" :darkmode=state.darkmode />
   </div>
