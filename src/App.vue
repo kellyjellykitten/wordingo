@@ -1,21 +1,24 @@
 <script setup>
 import SimpleKeyboard from "./components/SimpleKeyboard.vue";
 import WordRow from "./components/WordRow.vue";
-import { reactive, onMounted, computed } from "vue";
+import { reactive, ref, onMounted, computed } from "vue";
 import Header from "./components/Header.vue";
 
+let word
 
 const getWord = () => {
   fetch('http://localhost:8000/word')
     .then(response => response.json())
     .then(json => {
-      const word = json.toLowerCase()
+      word = json.toLowerCase()
+      state.solution = word
       console.log(word)
     })
     .catch(err => console.log(err))
 }
 
-console.log(getWord())
+getWord()
+
 
 const state = reactive({
   solution: "books",
@@ -32,13 +35,27 @@ const state = reactive({
   }
 })
 
-console.log("solution ", state.solution)
+// let initialState = ref({
+//   solution: "books",
+//   darkmode: false,
+//   guesses: ["", "", "", "", "", ""],
+//   currentGuessIndex: 0,
+//   guessedLetters: {
+//     //black
+//     miss: [],
+//     //green
+//     found: [],
+//     //yellow
+//     hint: []
+//   }
+// })
 
-// const darkmode = ref(false)
+
+
 function onDarkSwitch() {
-  console.log("clicked dark toggle on parent")
   state.darkmode = !state.darkmode
   localStorage.setItem('darkmode', state.darkmode)
+  console.log("darkmode: ", state.darkmode)
 }
 
   
@@ -85,16 +102,12 @@ const handleInput = (key) => {
     state.guesses[state.currentGuessIndex] =
       currentGuess.slice(0, -1)
   } else if (currentGuess.length < 5) {
-    //add latter if alphabetical
+    //add letter if alphabetical
     const alphaRegex = /[a-zA-Z]/;
     if (alphaRegex.test(key)) {
       state.guesses[state.currentGuessIndex] += key;
     }
   }
-}
-
-function resetGame() {
-  console.log("Clicked play again")
 }
 
 onMounted(() => {
@@ -103,11 +116,7 @@ onMounted(() => {
     //get key
     let key =
       //in order to pass the same enter & bckspc values, create ternary operator
-      //checks if key code is 13, meaning we want to enter
-      //& if key code is 8, meaning we want to backspace
-      //if neither, just want to get the string from the current char code
       //make lowerspace to match virtual keyboard
-      //NOTE: keyCode deprecated -- switched to key per docs
       e.key == "Enter"
         ? "{enter}"
         : e.key == "Backspace"
@@ -118,13 +127,34 @@ onMounted(() => {
   });
 })
 
+
+function resetGame() {
+  document.location.reload(true)
+}
+
+// function resetGame() {
+//   console.log("Clicked play again")
+//   state.darkmode = false,
+//   state.guesses = ["", "", "", "", "", ""],
+//   state.currentGuessIndex = 0,
+//   state.guessedLetters = {
+//     //black
+//     miss: [],
+//     //green
+//     found: [],
+//     //yellow
+//     hint: [],
+//   }
+//   getWord()
+//   wordrow.colors = ["", "", "", "", "", ""]
+// }
+
 </script>
 
 <template>
 <div class="bg-white dark:bg-black">
   <div class="flex flex-row h-50 px-16 pt-12 items-center justify-between">
-    <p>Darkmode: {{ state.darkmode }}</p>
-    <Header @toggleDark="onDarkSwitch" />
+    <Header @toggleDark="onDarkSwitch" :darkmode=state.darkmode />
   </div>
   <div class="flex flex-col h-screen max-w-md mx-auto justify-evenly">
     <div>
