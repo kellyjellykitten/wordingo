@@ -33,21 +33,6 @@ const getWord = () => {
 }
 getWord()
 
-// let initialState = ref({
-//   solution: "books",
-//   darkmode: false,
-//   guesses: ["", "", "", "", "", ""],
-//   currentGuessIndex: 0,
-//   guessedLetters: {
-//     //black
-//     miss: [],
-//     //green
-//     found: [],
-//     //yellow
-//     hint: []
-//   }
-// })
-
 
 function onDarkSwitch() {
   state.darkmode = !state.darkmode
@@ -129,23 +114,6 @@ function resetGame() {
   document.location.reload(true)
 }
 
-// function resetGame() {
-//   console.log("Clicked play again")
-//   state.darkmode = false,
-//   state.guesses = ["", "", "", "", "", ""],
-//   state.currentGuessIndex = 0,
-//   state.guessedLetters = {
-//     //black
-//     miss: [],
-//     //green
-//     found: [],
-//     //yellow
-//     hint: [],
-//   }
-//   getWord()
-//   wordrow.colors = ["", "", "", "", "", ""]
-// }
-
 </script>
 
 <template>
@@ -161,7 +129,6 @@ function resetGame() {
         :value="guess"
         :solution="state.solution"
         :submitted="i < state.currentGuessIndex"
-        :darkmode=state.darkmode
       />
     </div>
     <p v-if="wonGame" class="text-center text-slate-100">
@@ -187,6 +154,7 @@ function resetGame() {
     />
   </div>
 </div>
+
 <div v-else class="bg-white">
   <div class="flex flex-row h-50 px-16 pt-12 items-center justify-between">
     <Header @toggleDark="onDarkSwitch" :darkmode=state.darkmode />

@@ -8,7 +8,6 @@ const props = defineProps({
     solution: String,
     //whether or not uess has already been submitted
     submitted: Boolean,
-    darkmode: Boolean
 })
 
 //CHECKING GUESSES:
@@ -52,9 +51,8 @@ watch(
                 await new Promise((resolve) => setTimeout(resolve, 500));
             }
         }
-    },
+    }
 )
-
 
 </script>   
 
@@ -69,11 +67,5 @@ watch(
             :color="colors[i - 1]"
         />
     </div>
-
 </template>
 
-<style lang="postcss">
-div.dark {
-    @apply text-white;
-}
-</style>

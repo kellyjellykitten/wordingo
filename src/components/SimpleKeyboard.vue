@@ -11,7 +11,7 @@ import { ref, onMounted, watch } from "vue"
 const emit = defineEmits(["onKeyPress"])
 
 const props = defineProps({
-    guessedLetters: Object
+    guessedLetters: Object,
 })
 
 const keyboard = ref(null)
@@ -61,8 +61,7 @@ watch(
         );
     },
     //deep b/c we're checking an obj's properties
-    { deep: true },
-
+    { deep: true }
 )
 
 </script>   
