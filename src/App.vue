@@ -149,7 +149,7 @@ function resetGame() {
 </script>
 
 <template>
-<div v-if="state.darkmode" class="bg-gradient-to-r from-slate-800 via-zinc-700 to-neutral-800">
+<div v-if="state.darkmode" class="bg-gradient-to-tl from-gray-800 via-gray-900 to-black">
   <div class="flex flex-row h-50 px-16 pt-12 items-center justify-between">
     <Header @toggleDark="onDarkSwitch" :darkmode=state.darkmode />
   </div>
@@ -164,19 +164,19 @@ function resetGame() {
         :darkmode=state.darkmode
       />
     </div>
-    <p v-if="wonGame" class="text-center">
+    <p v-if="wonGame" class="text-center text-slate-100">
       😸 WOOOORDIIIIINGO! You solved it! 😸
       <br>
       <br>
-      <button @click="resetGame" class="text-green-500 hover:animate-spin bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+      <button @click="resetGame" class="text-green-600 hover:animate-spin bg-transparent border border-solid border-green-600 hover:bg-green-700 hover:text-white active:bg-green-700 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
         Play again!
       </button>
     </p>
-    <p v-else-if="lostGame" class="text-center">
+    <p v-else-if="lostGame" class="text-center text-slate-100">
       😿 Out of tries! 😿 <b>Solution: {{ state.solution }}</b>
       <br>
       <br>
-      <button @click="resetGame" class="text-green-500 hover:animate-spin bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+      <button @click="resetGame" class="text-green-600 hover:animate-spin bg-transparent border border-solid border-green-600 hover:bg-green-700 hover:text-white active:bg-green-700 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
         Play again!
       </button>
     </p>
@@ -205,7 +205,7 @@ function resetGame() {
       😸 WOOOORDIIIIINGO! You solved it! 😸
       <br>
       <br>
-      <button @click="resetGame" class="text-green-500 hover:animate-spin bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+      <button @click="resetGame" class="text-green-600 hover:animate-spin bg-transparent border border-solid border-green-600 hover:bg-green-700 hover:text-white active:bg-green-700 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
         Play again!
       </button>
     </p>
@@ -213,7 +213,7 @@ function resetGame() {
       😿 Out of tries! 😿 <b>Solution: {{ state.solution }}</b>
       <br>
       <br>
-      <button @click="resetGame" class="text-green-500 hover:animate-spin bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+      <button @click="resetGame" class="text-green-600 hover:animate-spin bg-transparent border border-solid border-green-600 hover:bg-green-700 hover:text-white active:bg-green-700 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
         Play again!
       </button>
     </p>
