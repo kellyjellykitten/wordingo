@@ -8,6 +8,7 @@ const props = defineProps({
     solution: String,
     //whether or not uess has already been submitted
     submitted: Boolean,
+    darkmode: Boolean,
 })
 
 //CHECKING GUESSES:
@@ -65,6 +66,7 @@ watch(
             :key="i"
             :letter="value[i - 1]"
             :color="colors[i - 1]"
+            :darkmode="darkmode"
         />
     </div>
 </template>

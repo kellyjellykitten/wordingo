@@ -10,6 +10,7 @@ const props = defineProps({
         type: String,
         default: "",
     },
+    darkmode: Boolean,
 });
 
 const pulse = ref(false);
@@ -38,8 +39,11 @@ watch(
             'border-gray-500 bg-gray-500 text-white': color == 'gray',
             'border-green-600 bg-green-600 text-white': color == 'green',
             'border-yellow-500 bg-yellow-500 text-white': color == 'yellow',
+            'text-white': darkmode == true
         }"
     >
         {{ letter }}
     </div>
 </template>
+
+

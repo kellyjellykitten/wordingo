@@ -93,6 +93,12 @@ const handleInput = (key) => {
 }
 
 onMounted(() => {
+  let darkPref = JSON.parse(window.localStorage.getItem('darkmode'))
+  if (darkPref) {
+    state.darkmode = darkPref
+  } else {
+    state.darkmode = false
+  }
   window.addEventListener("keyup", (e) => {
     e.preventDefault()
     //get key
@@ -117,7 +123,8 @@ function resetGame() {
 </script>
 
 <template>
-<div v-if="state.darkmode" class="bg-gradient-to-tl from-gray-800 via-gray-900 to-black">
+
+<div :class="{ darkbg: state.darkmode }">
   <div class="flex flex-row h-50 px-16 pt-12 items-center justify-between">
     <Header @toggleDark="onDarkSwitch" :darkmode=state.darkmode />
   </div>
@@ -129,9 +136,10 @@ function resetGame() {
         :value="guess"
         :solution="state.solution"
         :submitted="i < state.currentGuessIndex"
+        :darkmode=state.darkmode
       />
     </div>
-    <p v-if="wonGame" class="text-center text-slate-100">
+    <p v-if="wonGame" :class="state.darkmode ? 'darktxt' : 'lighttxt'">
       😸 WOOOORDIIIIINGO! You solved it! 😸
       <br>
       <br>
@@ -139,7 +147,7 @@ function resetGame() {
         Play again!
       </button>
     </p>
-    <p v-else-if="lostGame" class="text-center text-slate-100">
+    <p v-else-if="lostGame" :class="state.darkmode ? 'darktxt' : 'lighttxt'">
       😿 Out of tries! 😿 <b>Solution: {{ state.solution }}</b>
       <br>
       <br>
@@ -147,51 +155,30 @@ function resetGame() {
         Play again!
       </button>
     </p>
+    <div>
     <!-- listen for event -->
     <simple-keyboard
       @onKeyPress="handleInput"
       :guessedLetters="state.guessedLetters"
     />
+    </div>
   </div>
 </div>
 
-<div v-else class="bg-white">
-  <div class="flex flex-row h-50 px-16 pt-12 items-center justify-between">
-    <Header @toggleDark="onDarkSwitch" :darkmode=state.darkmode />
-  </div>
-  <div class="flex flex-col h-screen max-w-md mx-auto justify-evenly">
-    <div>
-      <word-row
-        v-for="(guess, i) in state.guesses"
-        :key="i"
-        :value="guess"
-        :solution="state.solution"
-        :submitted="i < state.currentGuessIndex"
-      />
-    </div>
-    <p v-if="wonGame" class="text-center">
-      😸 WOOOORDIIIIINGO! You solved it! 😸
-      <br>
-      <br>
-      <button @click="resetGame" class="text-green-600 hover:animate-spin bg-transparent border border-solid border-green-600 hover:bg-green-700 hover:text-white active:bg-green-700 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-        Play again!
-      </button>
-    </p>
-    <p v-else-if="lostGame" class="text-center">
-      😿 Out of tries! 😿 <b>Solution: {{ state.solution }}</b>
-      <br>
-      <br>
-      <button @click="resetGame" class="text-green-600 hover:animate-spin bg-transparent border border-solid border-green-600 hover:bg-green-700 hover:text-white active:bg-green-700 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-        Play again!
-      </button>
-    </p>
-    <!-- listen for event -->
-    <simple-keyboard
-      @onKeyPress="handleInput"
-      :guessedLetters="state.guessedLetters"
-    />
-  </div>
-</div>
 </template>
 
-<style></style>
+<style lang="postcss">
+div.darkbg {
+  @apply bg-gradient-to-tl from-gray-800 via-gray-900 to-black;
+}
+
+p.darktxt {
+  @apply text-center;
+  @apply text-slate-100;
+}
+
+p.lighttxt {
+  @apply text-black;
+  @apply text-center;
+}
+</style>
