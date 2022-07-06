@@ -25,10 +25,10 @@ const state = reactive({
 
 const getWord = () => {
   let randIndex = Math.floor(Math.random() * wordArray.length)
-  console.log("randIndex: ", randIndex)
+  //console.log("randIndex: ", randIndex)
   //grab that index from word array
   let word = wordArray[randIndex]
-  console.log("ranWord: ", word)
+  //console.log("ranWord: ", word)
   state.solution = word
 }
 getWord()

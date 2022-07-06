@@ -51,12 +51,13 @@ function toggleDark() {
                 focus:outline-none
                 justify-center
                 items-center
-                flex
+                md:flex
+                
             "
         >
-            <div v-if="darkmode" class="relative w-auto my-6 mx-auto max-w-6xl">
+            <div v-if="darkmode" class="relative w-auto mx-auto max-w-2xl">
                 <!-- content -->
-                <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-slate-700 outline-none focus:outline-none">
+                <div class="border-0 rounded-lg shadow-lg md:scroll-auto md:flex md:flex-col w-full bg-slate-700 outline-none focus:outline-none">
                     <!-- header -->
                     <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                         <h3 class="text-3xl font-semibold text-slate-100">How to Play</h3>
@@ -81,14 +82,14 @@ function toggleDark() {
                         <p class="my-4 text-lg leading-relaxed text-slate-100">
                             Guess the Wordingo in six tries! <br>
                             <br>
-                            Each guess must be a 5-letter word. Hit the enter key to submit your guess.<br>
-                            The letter tiles will change color depending on how close your guess was!<br>
+                            Each guess must be a 5-letter word. Press Enter to submit your guess.<br>
+                            The letter tiles will change color depending on the accuracy of your guess!<br>
                             <br>
                             <span style="color: #16a34a; font-weight:bold">GREEN</span> tiles indicate that the letter is in the word and in the correct spot.<br>
                             <img src="../assets/green.png" alt="Green tile means letter is in the word and right spot" title="Green letter tile" /><br>
                             <span style="color: #eab308; font-weight:bold">YELLOW</span> tiles indicate that the letter is in the word but in the incorrect spot.<br>
                             <img src="../assets/yellow.png" alt="Yellow tile means letter is in word but wrong spot" title="Yellow letter tile" /><br>
-                            <span style="color: #6b7280; font-weight:bold">GRAY</span> tiles mean that the letter is not in the word in any spot.<br>
+                            <span style="color: #6b7280; font-weight:bold">GRAY</span> tiles indicate that the letter is not in the word in any spot.<br>
                             <img src="../assets/gray.png" alt="Gray tile means letter is not in the word at all" title="Gray letter tile" /><br>
                             <br>
                             Hit <b>Play Again</b> to guess a different word!
@@ -105,7 +106,7 @@ function toggleDark() {
             </div>
             <div v-if="!darkmode" class="relative w-auto my-6 mx-auto max-w-6xl">
                 <!-- content -->
-                <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                <div class="border-0 rounded-lg shadow-lg relative md:flex md:flex-col w-full bg-white outline-none focus:outline-none">
                     <!-- header -->
                     <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                         <h3 class="text-3xl font-semibold">How to Play</h3>
