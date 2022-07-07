@@ -125,10 +125,10 @@ function resetGame() {
 <template>
 
 <div :class="{ darkbg: state.darkmode }">
-  <div class="flex flex-row h-50 px-16 pt-12 items-center justify-between">
+  <div class="flex flex-row px-16 h-28 items-center justify-between">
     <Header @toggleDark="onDarkSwitch" :darkmode=state.darkmode />
   </div>
-  <div class="flex flex-col h-screen max-w-md mx-auto justify-evenly">
+  <div class="flex flex-col h-[calc(100vh_-_7rem)] max-w-md mx-auto justify-evenly">
     <div>
       <word-row
         v-for="(guess, i) in state.guesses"
